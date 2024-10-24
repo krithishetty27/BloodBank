@@ -1,0 +1,6 @@
+<h2>Dummy Payment</h2>
+<p>You're paying ${{ payment.amount }} for {{ payment.test.name }}</p>
+<form method="post" action="{% url 'dummy_payment' payment_id=payment.id %}">
+  {% csrf_token %}
+  <button type="submit">Pay Now</button>
+</form>

@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - BloodSync</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0f7fa; /* Light background color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            margin: 0; /* Remove default margin */
+        }
+
+        .profile-container {
+            background-color: rgba(255, 255, 255, 0.9); /* Transparent white background */
+            padding: 30px; /* Increased padding */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Shadow for depth */
+            max-width: 500px; /* Limit the width of the profile container */
+            width: 100%; /* Full width for smaller screens */
+            text-align: center; /* Center the text */
+        }
+
+        h2 {
+            color: #007bff; /* Dark blue text for the heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        .status {
+            font-size: 16px; /* Font size for the status */
+            color: #333; /* Darker text for better readability */
+            margin-bottom: 20px; /* Space below the status */
+        }
+
+        .report-link {
+            font-size: 16px; /* Font size for the report link */
+            color: #007bff; /* Link color */
+        }
+
+        .report-image {
+            margin-top: 20px; /* Space above the report image */
+            max-width: 200px; /* Limit the image width */
+        }
+
+        .btn-back {
+            background: linear-gradient(to right, #007bff, #00c6ff); /* Button gradient */
+            border: none;
+            border-radius: 30px; /* Rounded button */
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white; /* White text */
+            margin-top: 20px; /* Space above the button */
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: linear-gradient(to right, #0056b3, #00a2e8); /* Darker gradient on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <h2>Welcome, {{ user.username }}</h2>
+    <p class="status">Status: {{ user_profile.status|capfirst }}</p>
+
+    {% if user_profile.file_upload %}
+        <p class="report-link">Your report: <a href="{{ user_profile.file_upload.url }}">View/Download report</a></p>
+        <img src="{{ user_profile.file_upload.url }}" alt="User Report" class="report-image" />
+    {% else %}
+        <p>No report uploaded yet.</p>
+    {% endif %}
+    <a href="{% url 'diagnosis' %}" class="btn btn-back">Make an Appointment</a>
+    <a href="{% url 'index' %}" class="btn btn-back">Logout</a> <!-- Button to navigate back to the home page -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+<h2>Your Appointments</h2>
+<ul>
+  {% for appointment in appointments %}
+    <li>{{ appointment.name }} - {{ appointment.test_type }} on {{ appointment.date }} at {{ appointment.timing }}</li>
+  {% endfor %}
+</ul>
